@@ -101,8 +101,8 @@ console.log(newGreetings);
 // Even though strings are just text, javascript treats them like a list of characters.
 // length find out how many characters are in the string(included spaces).
 
-const password = "12345";
-console.log(password.length);
+// const password = "12345";
+// console.log(password.length);                        
 // Accessing characters you can grab a specific letter using square letter using square brackets []. computers start counting at 0.
 const word = "pizza";
 console.log(word[0]);
@@ -329,23 +329,23 @@ console.log(employee["first name"]);
 // Inside a method, we often use the keyword `this`
 //* `this` refers to the current object(the specific object the code is inside of)
 
-const user = {
-    firstName: "Somadienna",
-    lastName: "Yusuf",
+// const user = {
+//     firstName: "Somadienna",
+//     lastName: "Yusuf",
 
-    sayHello: function () {
-        return "Hello my name is " + this.firstName;
-    },
+//     sayHello: function () {
+//         return "Hello my name is " + this.firstName;
+//     },
 
-    //Modern ES6 Shorthand fro writing methods
-    getFullName() {
-        return "Hello my name is" + "" + this.firstName + "" + this.lastName;
-    },
+//     //Modern ES6 Shorthand fro writing methods
+//     getFullName() {
+//         return "Hello my name is" + "" + this.firstName + "" + this.lastName;
+//     },
 
 
-};
+// };
 
-console.log(user.getFullName());
+// console.log(user.getFullName());
 
 //! Conditionals loops, and functions
 
@@ -631,21 +631,134 @@ console.log(quickMultiple(2, 2));
 // regular functions and `this`
 // regular functions have own `this` context, determined by how they are called;
 
-const obj = {
-    name: 'StreamingService',
-    users: ['Alice', 'Bob', 'Charlie'],
+// const obj = {
+//     name: 'StreamingService',
+//     users: ['Alice', 'Bob', 'Charlie'],
 
-    //Method using regular function
-    getActiveUsers: function () {
-        console.log(this.name);
+//Method using regular function
+// getActiveUsers: function () {
+//     console.log(this.name);
 
-        this.users.forEach(function (user) {
-            //** it is all related because Arow functions convert 
-            // this.users.forEach((user) => {
-            //Arrow function inherits `this` from getActiveUsers
-            console.log(`${user} is active on ${this.name}`);
-            // };
-        }, this);
-    }
+// this.users.forEach(function (user) {
+//** it is all related because Arrow functions convert 
+// this.users.forEach((user) => {
+//Arrow function inherits `this` from getActiveUsers
+// console.log(`${user} is active on ${this.name}`);
+// };
+//     }, this);
+// }
+// };
+
+
+
+//obj.getActiveUsers
+
+//PEMDAS --Parentheses(), exponential, multiplication, division, addition, subtraction.
+//Real-life Exampple: Generating an Email.
+
+function sendWelcomeEmail(user, discount) {
+    const emailBody = `Hi ${user},
+    
+    Welcome to our store
+    Because you joined today, here is a $${discount}% off coupon.
+    
+    Total price $${100 - (100 * (discount / 100))}
+    
+    Best,
+    The Team,
+    `
+
+    return emailBody;
 };
+
+console.log(sendWelcomeEmail('onlineManager', 20));
+
+
+function welcomeUsers(user, bonus) {
+    const msgBody = `Dear ${user},
+      
+    Welcome to twinkle
+     Go to your dashboard to claim your ${bonus}star token. `
+
+    return msgBody;
+};
+
+console.log(welcomeUsers('Twinkler', 5));
+
+//! Destructuring
+
+// Destructuring is fancy word for unpacking. It allows you to pull values out of arrays or properties out of object and save them into distinct variables instantly.
+
+//Object Destructuring.
+
+//! Without 
+// const userr = {
+//     id: 1,
+//     username: "dev_guru",
+//     email: "guru@code.com"
+// };
+
+// const myUserr = userr.id;
+// const username = user.username;
+// console.log(myUserr); //! this is repetitive
+
+
+// const id = user.id;
+
+//! With destructuring
+const userrr = { id: 23, username: 'onlineManager', email: 'manager@gmail.com' };
+
+const { username, email } = userrr;
+console.log(username);
+console.log(email);
+
+//* In-Depth Tip: You can even rename variables while destructing!
+const { username: mainName, email: mailing_address } = userrr;
+console.log(mainName);
+console.log(username);
+console.log(mailing_address);
+
+//* Array Destructuring
+
+//The order matters here(unlike objects)
+const colors = ["Red", "Green", "Blue", "Yellow", "Vermilion", "Mauve", "Crimson", "Indigo", "Teal"];
+const [primary, secondary, y] = colors; // primary, secondary are variable names.
+
+console.log[primary];
+console.log[secondary];
+console.log[y];
+
+//Spread vs Rest Operators(...)
+//These two use the exact same symbols(...), but they doo opposite things depending on where you use them.
+
+//Spread operator(...) -> "Expands"
+// Think of this unpacking a box. it takes an array(or object) and spreads its contents out into the open.
+// use case: combining arrays or copying objects.
+const fruit = ["Apples", "Banana"];
+const veggies = ["Carrot", "Spinach"];
+
+const shoppingList = [...fruit, ...veggies, "Milk"];
+console.log(shoppingList);
+
+
+//* Rest operator(...) In Javascript ia a feature that allows you to gather ("collect") multiple distinct elements and condense them into a single array or object.
+
+function roadTrip(driver, navigator, ...passengers) {
+    console.log(`Driver: ${driver}`);
+    console.log(`passengers: ${passengers}`);
+    console.log(`navigator: ${navigator}`)
+}
+
+roadTrip("Alice", "Bob", "Charlie", "David", "Eve");
+
+const testUser = {
+    id: 3,
+    name: "sam",
+    email: "sam@gmail.com",
+    password: "supersecretpassword",
+};
+
+
+const { password, ...safeUser } = testUser;
+console.log(safeUser);
 
