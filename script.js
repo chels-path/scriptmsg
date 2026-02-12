@@ -444,14 +444,14 @@ for (let i = 0; i < friends.length; i++) {
 
 //calculation your shoping bill
 
-let prices = [15.99, 23.50, 8.75, 42.00, 12.30];
-let total = 0;
-for (let i = 0; i < prices.length; i++) {
-    total += prices[i];
-    console.log(`Added $${prices[i]}, running: $${total.toFixed(2)}`)
-}
+// let prices = [15.99, 23.50, 8.75, 42.00, 12.30];
+// let total = 0;
+// for (let i = 0; i < prices.length; i++) {
+//     total += prices[i];
+//     console.log(`Added $${prices[i]}, running: $${total.toFixed(2)}`)
+// }
 
-console.log(`Final bill: $${total.toFixed(2)}`);
+// console.log(`Final bill: $${total.toFixed(2)}`);
 
 
 
@@ -760,5 +760,122 @@ const testUser = {
 
 
 const { password, ...safeUser } = testUser;
-console.log(safeUser);
+//console.log(safeUser);
+
+//* Array Methods: Map, filter, Reduce
+//These are the "holy trinity" of functional array manipulation. They do not mutate the original array; they return a new result
+
+//* map()
+// Purpose: Transforms every element in an array. Returns:  A new array of the same length.
+
+//! Example: convert prices to a formatted string.
+
+const prices = [10, 20, 30];
+const formatted = prices.map(price => `$${price}.00`);
+console.log(formatted);
+
+const fruitss = ['mango', "orange", "cherry"];
+const addFruits = fruits.map(eachFruitss => `${eachFruitss}.fr`); console.log(addFruits);
+
+//* filter()
+// Purpose: Selects elements that meet a specific condition. Returns: A new arrays(can be smaller than the original).
+// Example: Get only passing scores.
+
+const scores = [45, 80, 92, 30, 66];
+const passing = scores.filter(score => score >= 60);
+console.log(passing);
+
+//! .reduce()
+//* Purpose: Boils an array down to a single value(number, object, string, etc). returns: a single value(the accumulator.)
+
+const numbers = [10, 20, 30, 40];
+const total = numbers.reduce((accumulator, current) => {
+    return accumulator + current;
+}, 0) //* 0 is the starting value for accumulator
+
+console.log(total);
+
+//* template literals
+// templates literals allow you to embed variables directly into strings using backticks (`) instead of quotes. they also support multi line strings without special characters.
+
+
+
+//old way(concatenation);
+// const name = "Jane";
+// const greeting = "Hello" + name + "!";
+
+
+//E6 Way (Template Literals);
+const user = "jane";
+const Aage = 28;
+
+// embedding variables
+const greeting = `Hello, ${user}. You are ${age} year old.`;
+
+//Multi-line strings(no need for \n)
+const htmlSnippet = `
+<div>
+   <h1>${user}</h1>
+   <p>Status: Active</p>
+</div>
+`;
+
+console.log(greeting);
+console.log(htmlSnippet);
+
+//* Optional Chaining (?.)
+// This creates safe way to access nested object properties. if a poverty doesn't exists( is null or undefined), it stops and return undefined instead of throwing a big red error like uncaught TypeError.
+
+const userProfile = {
+    name: "Sam",
+    details: {
+        //! address is missing
+    }
+};
+
+//*❌ Unsafe way (Throws Error if details is missing)
+//* console.log(userProfile.details.address.city);
+
+//✅ optional chanting (Returns undefined, no crash)
+//console.log(userProfile.details?.address?.city);
+
+//! ASSIGNMENT
+//* NULLISH COALESCING (??)
+
+// In simple terms, Nullish coalescing (??) is a logic gate in javascript that provides a fallback value only when the original value is "nullish" (strictly or undefined). Is also a logo a logical operator in javascript that returns the right-hand operand when the left-hand operand is null or undefined, and otherwise- returns the left-hand operand.
+
+let value1 = null ?? "default";
+console.log(value1);
+let value2 = undefined ?? "default"; //default
+let value3 = 0 ?? "default"; // 0
+let value4 = "" ?? "default"; // ""
+console.log(value4);
+let value5 = false ?? "default"; //false
+
+//* Key distinction from OR(||):
+// The crucial difference is that ?? only consider null and undefined as 'nullish', while || treats all falsy(0,"",undefined,NaN) as triggering the fallback.
+
+let counts = 0;
+
+console.log(counts || 10); //10
+console.log(counts ?? 10);  // 0
+
+let Number;
+console.log(Number ?? 10);
+
+
+
+
+
+
+
+//! DOM
+//* It is that bridge between your HTML CODE (the structure of the page) and javascript(the logic). without the DOM. javascript wouldn't be able to see "see", understand, or manipulate the HTML elements on a webpage.
+
+
+
+
+
+
+
 
